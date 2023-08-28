@@ -1,0 +1,43 @@
+{% extends 'notes/admin_nav.html'%}
+{%load static%}
+{% block head%}
+<style>
+    .container1{
+        background-color: lightgray;
+        border-radius: 8px;
+    }
+    .mydiv:hover{
+      transform: translateY(-10px);
+    }
+</style>
+{% endblock %}
+{% block body%}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-3 mydiv">
+            <div class="container1">
+                <h4 class="text-center text-primary py-2" >{{pending}}</h4>
+                <center><a href="" class="text-dark">PENDING NOTES</a></center>
+            </div>
+        </div>
+        <div class="col-sm-3 mydiv">
+            <div class="container1">
+                <h4 class="text-center text-primary py-2" >{{accepted}}</h4>
+                <center><a href="" class="text-dark">ACCEPTED NOTES</a></center>
+            </div>
+        </div>
+        <div class="col-sm-3 mydiv">
+            <div class="container1">
+                <h4 class="text-center text-primary py-2" >{{rejected}}</h4>
+                <center><a href="" class="text-dark">REJECTED NOTES</a></center>
+            </div>
+        </div>
+        <div class="col-sm-3 mydiv">
+            <div class="container1">
+                <h4 class="text-center text-primary py-2" >{{all}}</h4>
+                <center><a href="" class="text-dark">ALL NOTES</a></center>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

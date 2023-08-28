@@ -1,0 +1,67 @@
+{% extends 'notes/admin_nav.html'%}
+{% load static%}
+{% block head%}
+<style>
+   
+</style>
+{% endblock %}
+{% block body%}
+<div class="container" id="main">
+    <h2 style="text-align: center;">Pending Notes</h2>
+    <div class="row">
+        <table class="table table-striped" id="myTable">
+          <tr>
+            <th>Sr. No.</th>
+            <th>Uploading Date</th>
+            <th>Uploaded By</th>
+            <th>Branch</th>
+            <th>Subject</th>
+            <th>Downlaod Notes</th>
+            <th>File Type</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Assign Status</th>
+            <th>Action</th>
+          </tr>
+          {% for item in notes%}
+          <tr>
+           <td>
+            {{forloop.counter}}
+           </td>
+           <td>
+            {{item.uploading_date}}
+           </td>
+           <td>
+            {{item.user.first_name}}
+           </td>
+           <td>
+            {{item.branch}}
+           </td>
+           <td>
+            {{item.subject}}
+           </td>
+           <td>
+            <a href="{{item.notes_file.url}}" class="btn btn-danger" download>Download</a>
+           </td>
+           <td>
+            {{item.filetype}}
+           </td>
+           <td>
+            {{item.description}}
+           </td>
+           <td>
+            {{item.status}}
+           </td>
+           <td>
+            <a href="{% url 'assign_status' item.id%}" class="btn btn-success">ASSIGN&nbsp;STATUS</a>
+          </td>
+           <td>
+             <a href="{% url 'delete_pendingnotes' item.id %}" class="btn btn-danger" onclick="return confirm('Are You Sure?')">DELETE</a>
+           </td>
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

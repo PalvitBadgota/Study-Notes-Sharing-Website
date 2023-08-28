@@ -1,0 +1,39 @@
+{% extends 'notes/admin_nav.html'%}
+{% load static%}
+{% block head%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+{% endblock %}
+{% block body%}
+<h2 style="text-align: center;">VIEW USERS</h2>
+<table class="table table-striped" id="example">
+    <thead>
+        <tr>
+            <th>Sr. No.</th>
+            <th>Full Name</th>
+            <th>Email Id</th>
+            <th>Contact</th>
+            <th>Branch</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in users%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{item.user.first_name}} {{item.user.last_name}}</td>
+            <td>{{item.user.username}}</td>
+            <td>{{item.contact}}</td>
+            <td>{{item.branch}}</td>
+            <td>{{item.role}}</td>
+            <td><a href="{% url 'delete_user' item.user.id%}" class="btn btn-danger" onclick="return confirm('Are You Sure to delete this user?')">DELETE</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>new DataTable('#example');</script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+{% endblock %}

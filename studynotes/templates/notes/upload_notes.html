@@ -1,0 +1,75 @@
+{%extends 'notes/usernavigation.html'%}
+{% load static%}
+{% block head%}
+<style>
+    label{
+        color:black;
+        margin-top: 5px;
+        font-weight: 600;
+        font-style: oblique;
+    }
+</style>
+{% endblock %}
+{% block body%}
+
+{% if error == "no" %}
+<script>
+    alert('Notes Uploaded Successfully')
+    window.location=('{% url 'mynotes' %}')
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong ....pls try again')
+</script>
+{% endif %}
+
+
+
+
+
+<div class="container mt-2 mb-2">
+    {% comment %} <h2  style="font-family: 'Monotype Corsiva'; padding-left: 227px;">REGISTER WITH US</h2> {% endcomment %}
+    <h4 style=" font-family: 'Times New Roman', Times, serif; text-align: center; color: red; font-weight: 900;" class="mt-2">UPLOAD NOTES</h4>
+    <hr>
+    <div class="row">
+        <div class="col-sm-4 offset-2" style="background-color:lightgrey; border-radius: 20px; margin-right:-15px;">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="branch">Branch:</label>
+                <select  id="branch" class="form-control mt-2" name="branch">
+                    <option value="">---Select Branch---</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value=">Civil">Civil</option>
+                </select>
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" placeholder="Enter subject name" class="form-control" name="subject">
+                <label for="notesfile">Notes File:</label>
+                <input type="file" id="notesfile" class="form-control"name="notesfile">
+                <label for="filetype">File Type:</label>
+                <select  id="filetype" class="form-control mt-2" name="filetype">
+                    <option value="">---Select File Type---</option>
+                    <option value="pdf">PDF</option>
+                    <option value="ppt">PPT</option>
+                    <option value="docx">DOC/DOCX</option>
+                    <option value="txt">TXT</option>
+                    <option value=">image">IMAGE</option>
+                </select>
+                <label for="desc">Description:</label>
+                <textarea name="description" id="desc" class="form-control"></textarea>
+                
+                <center><input type="submit" class="btn btn-success mt-2 mb-1" value="SUBMIT"></center>
+            </form>
+        </div>
+        <div class="col-sm-6">
+          <img src="{% static 'images/upload_notes.jpeg' %}" alt="" style="height:513px; width:100%; border-radius: 20px;">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
